@@ -1,0 +1,64 @@
+{
+  "extends": ["next/core-web-vitals", "next/typescript"],
+  "rules": {
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+        "filter": {
+          "regex": "^(api|API|axios|baseURL)$",
+          "match": false
+        }
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase"],
+        "modifiers": ["private"],
+        "leadingUnderscore": "require"
+      },
+      {
+        "selector": "property",
+        "format": ["camelCase"],
+        "filter": {
+          "regex": "^(base_difficulty|current_difficulty|last_quiz_difficulty|topic_id|quiz_id|subject_id|user_id|created_at|updated_at|is_weak_area|mastery_score|time_spent_minutes|attempted_at|difficulty_level|question_type|correct_answer|time_taken_seconds|is_correct|user_answer)$",
+          "match": true
+        },
+        "format": ["snake_case"],
+        "message": "API response properties must use snake_case to match backend"
+      }
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "TemplateLiteral[expressions.length > 0][quasis.0.value.raw=/\\/api\\/.*\\{id\\}[^_]/]",
+        "message": "❌ API paths must use specific parameter names: Use {topic_id}, {quiz_id}, {subject_id}, {note_id}, {plan_id} instead of generic {id}"
+      },
+      {
+        "selector": "TemplateLiteral[expressions.length > 0][quasis.0.value.raw=/api.*\\{id\\}/]",
+        "message": "❌ Never use generic {id} in API paths. Use specific: {topic_id}, {quiz_id}, {subject_id}, {note_id}, {plan_id}"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/api.ts", "**/api/**/*.ts"],
+      "rules": {
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            "selector": "property",
+            "modifiers": ["inObject"],
+            "format": ["snake_case"],
+            "filter": {
+              "regex": "^(base_difficulty|current_difficulty|last_quiz_difficulty|topic_id|quiz_id|subject_id|user_id|created_at|updated_at|is_weak_area|mastery_score|time_spent_minutes|attempted_at|difficulty_level|question_type|correct_answer|time_taken_seconds|is_correct|user_answer)$",
+              "match": true
+            },
+            "message": "API request bodies must use snake_case to match backend expectations"
+          }
+        ]
+      }
+    }
+  ]
+}
+

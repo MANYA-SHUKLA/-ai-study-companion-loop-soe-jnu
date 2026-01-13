@@ -1,0 +1,360 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom Color Palette - Using OKLCH for better color consistency */
+  --color-primary-50: oklch(0.98 0.02 250);
+  --color-primary-100: oklch(0.95 0.05 250);
+  --color-primary-200: oklch(0.90 0.10 250);
+  --color-primary-300: oklch(0.80 0.15 250);
+  --color-primary-400: oklch(0.70 0.20 250);
+  --color-primary-500: oklch(0.60 0.25 250);
+  --color-primary-600: oklch(0.50 0.30 250); /* Improved contrast: 4.5:1 on white */
+  --color-primary-700: oklch(0.45 0.35 250); /* Improved contrast: 7:1 on white */
+  --color-primary-800: oklch(0.35 0.30 250);
+  --color-primary-900: oklch(0.25 0.25 250);
+  --color-primary-950: oklch(0.15 0.20 250);
+
+  --color-accent-50: oklch(0.98 0.02 320);
+  --color-accent-100: oklch(0.95 0.05 320);
+  --color-accent-200: oklch(0.90 0.10 320);
+  --color-accent-300: oklch(0.80 0.15 320);
+  --color-accent-400: oklch(0.70 0.20 320);
+  --color-accent-500: oklch(0.60 0.25 320);
+  --color-accent-600: oklch(0.55 0.30 320);
+  --color-accent-700: oklch(0.45 0.35 320);
+  --color-accent-800: oklch(0.35 0.30 320);
+  --color-accent-900: oklch(0.25 0.25 320);
+  --color-accent-950: oklch(0.15 0.20 320);
+
+  --color-success-50: oklch(0.98 0.02 145);
+  --color-success-100: oklch(0.95 0.05 145);
+  --color-success-200: oklch(0.90 0.10 145);
+  --color-success-300: oklch(0.80 0.15 145);
+  --color-success-400: oklch(0.70 0.20 145);
+  --color-success-500: oklch(0.60 0.25 145);
+  --color-success-600: oklch(0.55 0.30 145);
+  --color-success-700: oklch(0.45 0.35 145);
+  --color-success-800: oklch(0.35 0.30 145);
+  --color-success-900: oklch(0.25 0.25 145);
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-base: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+
+  /* Animation Durations */
+  --animate-duration-fast: 150ms;
+  --animate-duration-base: 300ms;
+  --animate-duration-slow: 500ms;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: oklch(0.05 0 0);
+    color: oklch(0.95 0 0);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 300ms, color 300ms;
+  }
+
+  /* Consistent Typography */
+  h1 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl font-bold tracking-tight;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
+  }
+
+  h4 {
+    @apply text-lg md:text-xl font-semibold;
+  }
+
+  /* Consistent Spacing */
+  .section-spacing {
+    @apply mb-8 md:mb-12;
+  }
+
+  .card-spacing {
+    @apply p-6 md:p-8;
+  }
+
+  .container-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .glass {
+    background-color: oklch(0.1 0 0 / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid oklch(0.2 0 0 / 0.5);
+  }
+  
+  .gradient-text {
+    background: linear-gradient(to right, oklch(0.55 0.30 250), oklch(0.60 0.25 320));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .gradient-mesh {
+    background: linear-gradient(135deg, oklch(0.60 0.25 250), oklch(0.55 0.30 320));
+  }
+
+  .gradient-sunset {
+    background: linear-gradient(135deg, oklch(0.70 0.20 320), oklch(0.60 0.25 15));
+  }
+
+  .gradient-ocean {
+    background: linear-gradient(135deg, oklch(0.60 0.25 230), oklch(0.65 0.20 200));
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 20px oklch(0.60 0.25 250 / 0.5);
+  }
+
+  .shadow-glow-lg {
+    box-shadow: 0 0 40px oklch(0.60 0.25 250 / 0.4);
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes scale-in {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.5s ease-in-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slide-down 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    33% {
+      transform: translateY(-20px) translateX(10px);
+    }
+    66% {
+      transform: translateY(-10px) translateX(-10px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .gradient-animated {
+    background-size: 200% 200%;
+    animation: gradient-shift 5s ease infinite;
+  }
+
+  /* Floating shapes */
+  .floating-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .shape-1 {
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    top: 10%;
+    left: 10%;
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .shape-2 {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #ec4899, #f43f5e);
+    top: 60%;
+    right: 10%;
+    animation: float-slow 10s ease-in-out infinite reverse;
+  }
+
+  .shape-3 {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, #06b6d4, #3b82f6);
+    bottom: 10%;
+    left: 50%;
+    animation: float-slow 12s ease-in-out infinite;
+  }
+}
+
+/* Mermaid diagram styles */
+.mermaid {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-height: 400px !important;
+}
+
+.mermaid svg {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+  fill: #6366f1 !important;
+  stroke: #818cf8 !important;
+  stroke-width: 3px !important;
+}
+
+.mermaid .edgePath .path {
+  stroke: #818cf8 !important;
+  stroke-width: 2px !important;
+}
+
+.mermaid .edgeLabel {
+  background-color: rgba(31, 41, 55, 0.8) !important;
+  color: #e5e7eb !important;
+}
