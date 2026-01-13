@@ -6,7 +6,6 @@ and ensure consistency across the codebase.
 
 All column names are in snake_case to match PostgreSQL conventions.
 """
-
 # topic_progress table columns
 TOPIC_PROGRESS_COLUMNS = {
     "ID": "id",
