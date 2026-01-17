@@ -88,3 +88,20 @@ async def delete_subject(subject_id: str, user_id: str = Depends(get_user_id)):
     
     return {"message": "Subject deleted successfully"}
 
+# Add this route to get notes for a subject
+@router.get("/{subject_id}/notes")
+async def get_subject_notes(subject_id: str, user_id: str = Depends(get_user_id)):
+    """Get all notes for a specific subject"""
+    from app.models.database import db
+    
+    supabase = db.get_client()
+    
+    # Verify subject belongs to user
+    subject_result = supabase.table("subjects").select("id").eq("id", subject_id).eq("user_id", user_id).execute()
+    if not subject_result.data:
+        raise HTTPException(status_code=404, detail="Subject not found")
+    
+    # Get notes for this subject
+    notes_result = supabase.table("notes").select("*").eq("user_id", user_id).eq("subject_id", subject_id).order("created_at", desc=True).execute()
+    
+    return notes_result.data

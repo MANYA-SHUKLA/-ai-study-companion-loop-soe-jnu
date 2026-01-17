@@ -13,7 +13,7 @@ fi
 source venv/bin/activate
 
 # Kill any existing backend processes
-lsof -ti:8000 | xargs kill -9 2>/dev/null
+lsof -ti:8001 | xargs kill -9 2>/dev/null
 
 # Start backend
 echo "Starting backend server..."
@@ -24,10 +24,10 @@ BACKEND_PID=$!
 sleep 3
 
 # Check if it's running
-if curl -s http://localhost:8000/health > /dev/null; then
+if curl -s http://localhost:8001/health > /dev/null; then
     echo "✓ Backend started successfully (PID: $BACKEND_PID)"
-    echo "Backend URL: http://localhost:8000"
-    echo "API Docs: http://localhost:8000/docs"
+    echo "Backend URL: http://localhost:8001"
+    echo "API Docs: http://localhost:8001/docs"
     echo "Logs: tail -f backend/backend.log"
 else
     echo "✗ Backend failed to start. Check backend.log for errors."

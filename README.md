@@ -143,7 +143,7 @@ chmod +x start-backend.sh
 ./start-backend.sh
 ```
 
-Backend will run on `http://localhost:8000`
+Backend will run on `http://localhost:8001`
 
 ### 3. Frontend Setup
 
@@ -165,7 +165,7 @@ NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 # Backend API
-NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_API_URL=http://localhost:8001
 ```
 
 **Start the frontend:**
@@ -433,8 +433,8 @@ Find information by meaning:
 
 ### **Backend won't start**
 ```bash
-# Check if port 8000 is in use
-lsof -i :8000
+# Check if port 8001 is in use
+lsof -i :8001
 
 # Kill existing process
 pkill -f uvicorn
@@ -461,7 +461,7 @@ npm run dev
 ### **AI not responding**
 - Verify `GEMINI_API_KEY` in backend `.env`
 - Check backend logs: `tail -f backend/backend.log`
-- Test API: `curl http://localhost:8000/health`
+- Test API: `curl http://localhost:8001/health`
 
 ### **Notes not showing**
 - Hard refresh browser (Cmd+Shift+R / Ctrl+Shift+R)

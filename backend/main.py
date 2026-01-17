@@ -192,6 +192,13 @@ async def options_handler(full_path: str, request: Request):
     
     return JSONResponse(content={}, headers=headers)
 
+@app.middleware("http")
+async def ignore_favicon(request: Request, call_next):
+    if request.url.path == "/favicon.ico":
+        return Response(status_code=204)
+    response = await call_next(request)
+    return response
+
 # Import routes
 from app.routes import auth, subjects, topics, study_plans, notes, search
 
@@ -205,5 +212,5 @@ app.include_router(search.router)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8001)
 
