@@ -24,7 +24,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Check if Supabase is configured before attempting auth
     if (!isSupabaseReady()) {
       console.warn('Supabase is not configured. Authentication features will be limited.')
       setLoading(false)
